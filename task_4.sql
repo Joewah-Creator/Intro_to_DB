@@ -1,5 +1,15 @@
--- Switch to the correct database
-USE alx_book_store;
+-- Script that prints the full description of the table books
+-- from the database passed as an argument
 
--- Show the full table description for 'books' without using DESCRIBE or EXPLAIN
-SHOW CREATE TABLE Books;
+SELECT 
+    COLUMN_NAME AS 'Field',
+    COLUMN_TYPE AS 'Type',
+    IS_NULLABLE AS 'Null',
+    COLUMN_KEY AS 'Key',
+    COLUMN_DEFAULT AS 'Default',
+    EXTRA AS 'Extra'
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_SCHEMA = DATABASE()
+  AND TABLE_NAME = 'books'
+ORDER BY ORDINAL_POSITION;
+
